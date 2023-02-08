@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React,{createContext, useState} from 'react';
+import Header from './components/Header/Header';
 import './App.css';
+import Sidebar from './components/Sidebar/Sidebar';
+
+ export const datacontext=createContext(false)
+ export const countcontext=createContext(false)
 
 function App() {
+  const[data,setdata]=useState('');
+  const[count,setcount]=useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <datacontext.Provider value={[data,setdata]}  >
+    <div>
+     <countcontext.Provider value={[count,setcount]}
+>
+       <Header />
+      <Sidebar />
+      </countcontext.Provider>
     </div>
+    </datacontext.Provider>
   );
 }
 
